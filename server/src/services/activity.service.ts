@@ -6,7 +6,6 @@ import { Activity } from "../models/activity";
 import { User } from "../models/user";
 
 export async function fetchActivity(currentUser: User | undefined): Promise<Activity> {
-
   const priceRange = currentUser?.getPrice();
   const accessibilityRange = currentUser?.getAccessibility();
 
