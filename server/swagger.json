@@ -1,0 +1,149 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Accessibility": {
+				"enum": [
+					0,
+					1,
+					2
+				],
+				"type": "number"
+			},
+			"Price": {
+				"enum": [
+					0,
+					1,
+					2
+				],
+				"type": "number"
+			},
+			"Activity": {
+				"properties": {
+					"activity": {
+						"type": "string"
+					},
+					"accessibility": {
+						"$ref": "#/components/schemas/Accessibility"
+					},
+					"type": {
+						"type": "string"
+					},
+					"participants": {
+						"type": "number",
+						"format": "double"
+					},
+					"price": {
+						"$ref": "#/components/schemas/Price"
+					},
+					"link": {
+						"type": "string"
+					},
+					"key": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"activity",
+					"accessibility",
+					"type",
+					"participants",
+					"price",
+					"link",
+					"key"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"User": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"accessibility": {
+						"$ref": "#/components/schemas/Accessibility"
+					},
+					"price": {
+						"$ref": "#/components/schemas/Price"
+					}
+				},
+				"required": [
+					"name",
+					"accessibility",
+					"price"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "activities-server",
+		"version": "1.0.0",
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/activity": {
+			"get": {
+				"operationId": "GetActivity",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Activity"
+								}
+							}
+						}
+					}
+				},
+				"description": "Request a new random activity (based on the current user's prefereces, if any)",
+				"tags": [
+					"Activity"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user": {
+			"post": {
+				"operationId": "PostUser",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "Sets a new current user",
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Data of the new current user",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/User",
+								"description": "Data of the new current user"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
