@@ -30,10 +30,8 @@ export class User {
         case Accessibility.High:
           return new QueryRange(0, .25);
         case Accessibility.Medium:
-          // TODO: fix range
           return new QueryRange(.251, 0.75);
         case Accessibility.Low:
-          // TODO: fix range
           return new QueryRange(.751, 1.0);
       }
       

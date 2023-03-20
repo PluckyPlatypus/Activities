@@ -1,20 +1,21 @@
 import express, { Express } from 'express';
-import { serve, setup } from 'swagger-ui-express';
+import cors from 'cors';
 import Router from './src/routes/routes';
+import swaggerUI from 'swagger-ui-express';
+
+import swaggerDoc from './swagger.json';
+
 
 const app: Express = express();
 
 app.use(express.json());
 
-// TODO: fix swagger
+app.use(cors());
+
 app.use(
-  "/docs",
-  serve,
-  setup(undefined, {
-    swaggerOptions: {
-      url: "swagger.json",
-    },
-  })
+  '/docs',
+  swaggerUI.serve, 
+  swaggerUI.setup(swaggerDoc)
 );
 
 // setup routes

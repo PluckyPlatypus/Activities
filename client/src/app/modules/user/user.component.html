@@ -1,0 +1,42 @@
+<div *ngIf="!(isLoading$ | async); else spinner">
+     <form class="userForm" [formGroup]="form"  (submit)="updateUser()">
+        <mat-form-field>          
+          <label for="name">Name</label>
+          <input matInput type="text" name="name" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Accessibility" formControlName="accessibility">
+                <label for="accessibility">Accessibility Preference</label>
+                <mat-option *ngFor="let val of accessibilityValues" [value]="val" >
+                    {{ val }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Price" formControlName="price">
+                <label for="price">Price Preference</label>
+                <mat-option *ngFor="let val of priceValues" [value]="val" >
+                    {{ val }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+          
+        <button [disabled]="!form.valid" type="submit">Update User</button>
+      </form>
+    
+    <div *ngIf="(error$ | async) as currentError; else userUpdate">
+        <div>{{currentError}}</div>
+    </div>
+
+    <ng-template #userUpdate>
+        <div *ngIf="(user$ | async) as currentUser">
+            Update successful!
+        </div>
+    </ng-template>
+</div>
+
+<ng-template #spinner>
+    <mat-spinner class="spinner"> </mat-spinner>
+</ng-template>

@@ -1,28 +1,85 @@
 {
+	"openapi": "3.0.0",
+	"info": {
+		"title": "activities-server",
+		"version": "1.0.0",
+		"contact": {}
+	},
+	"paths": {
+		"/activity": {
+			"get": {
+				"operationId": "GetActivity",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ActivityDto"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets new random activity, based on current user preferences if a user was set",
+				"tags": [
+					"Activity"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user": {
+			"post": {
+				"operationId": "PostUser",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "Sets a new current user",
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/User"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	],
 	"components": {
-		"examples": {},
-		"headers": {},
-		"parameters": {},
-		"requestBodies": {},
-		"responses": {},
 		"schemas": {
 			"Accessibility": {
 				"enum": [
-					0,
-					1,
-					2
+					"Low",
+					"Medium",
+					"High"
 				],
-				"type": "number"
+				"type": "string"
 			},
 			"Price": {
 				"enum": [
-					0,
-					1,
-					2
+					"Free",
+					"Low",
+					"High"
 				],
-				"type": "number"
+				"type": "string"
 			},
-			"Activity": {
+			"ActivityDto": {
 				"properties": {
 					"activity": {
 						"type": "string"
@@ -81,69 +138,5 @@
 			}
 		},
 		"securitySchemes": {}
-	},
-	"info": {
-		"title": "activities-server",
-		"version": "1.0.0",
-		"contact": {}
-	},
-	"openapi": "3.0.0",
-	"paths": {
-		"/activity": {
-			"get": {
-				"operationId": "GetActivity",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Activity"
-								}
-							}
-						}
-					}
-				},
-				"description": "Request a new random activity (based on the current user's prefereces, if any)",
-				"tags": [
-					"Activity"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/user": {
-			"post": {
-				"operationId": "PostUser",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"description": "Sets a new current user",
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"description": "Data of the new current user",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/User",
-								"description": "Data of the new current user"
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"servers": [
-		{
-			"url": "/"
-		}
-	]
+	}
 }

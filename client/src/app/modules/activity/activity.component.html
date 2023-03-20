@@ -1,0 +1,21 @@
+<div class="activityContent" *ngIf="!(isLoading$ | async); else spinner">
+    <button (click)="getNewActivity()">Get new activity</button>
+
+     <div  class="activity" *ngIf="(activity$ | async) as currentActivity">
+        <div class="title">Here's your activity: </div>
+        <div><span class="title">Activity:</span>{{currentActivity.activity}}</div>
+        <div><span class="title">Accessibility:</span>{{currentActivity.accessibility}}</div>
+        <div><span class="title">Price:</span>{{currentActivity.price}}</div>
+        <div><span class="title">Participants:</span>{{currentActivity.participants}}</div>
+        <div><span class="title">Type:</span>{{currentActivity.type}}</div>
+        <div *ngIf="currentActivity.link.length > 0"><span class="title">Link:</span>{{currentActivity.link}}</div>
+    </div>
+    
+    <div *ngIf="(error$ | async) as currentError">
+        <div>{{currentError}}</div>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <mat-spinner class="spinner"> </mat-spinner>
+</ng-template>
