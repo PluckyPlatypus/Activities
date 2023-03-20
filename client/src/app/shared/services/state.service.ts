@@ -18,9 +18,8 @@ const initialState: AppState = {
   isLoading: false,
 };
 
-  @Injectable({ providedIn: 'root'})
+  @Injectable()
 export class StateService{
-  // TODO: this is not very elegant - defined here and used right underneath - maybe move all into constructor? 
   private state$: BehaviorSubject<AppState> = new BehaviorSubject<AppState>(initialState);
   
   user$: Observable<User | null> = this.select(state => state.currentUser);

@@ -22,10 +22,6 @@ button:disabled {
     color: #7c19dd;
 }
 
-/* mdc-tab mat-mdc-tab mat-mdc-focus-indicator ng-star-inserted */
-/* mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active ng-star-inserted mdc-tab-indicator--active */
-
-
 .mdc-tab--active .mdc-tab__text-label {
     font-weight: bold;
 }

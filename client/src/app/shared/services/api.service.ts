@@ -13,7 +13,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // TODO: axios instead of http?
   getActivity(): Observable<Activity> {    
     return this.http.get<Activity>(this.baseURL + "activity");
   }

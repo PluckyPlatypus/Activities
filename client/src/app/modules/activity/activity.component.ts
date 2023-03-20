@@ -15,7 +15,6 @@ export class ActivityComponent{
 
 
   constructor(private stateFacade: StateFacade){
-    // TODO: update function names!
     this.activity$ = stateFacade.activity$();
     this.isLoading$ = stateFacade.isLoading$();
     this.error$ = stateFacade.errors$();

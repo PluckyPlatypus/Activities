@@ -29,7 +29,6 @@ export class UserComponent{
   priceValues = Object.values(Price);
 
   constructor(private stateFacade: StateFacade){
-    // TODO: update function names!
     this.user$ = stateFacade.user$();
     this.isLoading$ = stateFacade.isLoading$();
     this.error$ = stateFacade.errors$();
